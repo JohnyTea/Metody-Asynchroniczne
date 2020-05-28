@@ -27,77 +27,46 @@ namespace Metody_Asynchroniczne
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string adres = (string) listaStron_ListBox.SelectedItem;
-                Async_RTB.Text += await Task.Run(() => WebRequesting(adres));
+            string adres;
+            adres = (string)listaStron_ListBox.SelectedItem;
+            if (listaStron_ListBox.SelectedIndex < listaStron_ListBox.Items.Count-1)
+            {
+                listaStron_ListBox.SelectedIndex = listaStron_ListBox.SelectedIndex + 1;
+            }
+            else
+            {
+                listaStron_ListBox.SelectedIndex = 0;
+            }
+            Async_RTB.Text += await Task.Run(() => WebRequesting(adres));
+            Async_RTB.Text += "****************************************************************\n";
+            Async_RTB.Text += "****************************************************************\n";
+            Async_RTB.Text += "****************************************************************\n";
+            Async_RTB.Text += "****************************************************************\n";
+            Async_RTB.Text += "****************************************************************\n";
         }
 
 
-        public string WebRequesting(string Adres)
+        public async Task<string> WebRequesting(string Adres)
         {
-            System.Threading.Thread.Sleep(10000);
-            // Create a request for the URL. 		
-            WebRequest request = WebRequest.Create(Adres);
-            // If required by the server, set the credentials.
-            request.Credentials = CredentialCache.DefaultCredentials;
-            // Get the response.
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = reader.ReadToEnd();
-            // Cleanup the streams and the response.
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            WebClient client = new WebClient();
+            return await client.DownloadStringTaskAsync(new Uri(Adres));
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
             Async_RTB.Clear();
             string adres;
-            for (int i = listaStron_ListBox.SelectedIndex; i < listaStron_ListBox.Items.Count; i++)
-            {
-                listaStron_ListBox.SelectedIndex = i;
-                adres = (string)listaStron_ListBox.SelectedItem;
-                Async_RTB.Text += "\n**************\n" + adres + "\n******************\n";
-                Async_RTB.Text += "\n**************\n" + adres + "\n******************\n";
-                Async_RTB.Text += "\n**************\n" + adres + "\n******************\n";
-                Async_RTB.Text += await Task.Run(() => WebRequesting(adres));
-            }
-            
-
+            adres = URL_TB.Text;
+            Async_RTB.Text += await Task.Run(() => WebRequesting(adres));
         }
 
         private async void button3_Click(object sender, EventArgs e)
         {
             string adres = (string)listaStron_ListBox.SelectedItem;
-            Async_RTB.Text += await Task.Run(() => ShortHtml(adres));
+            string tresc = await Task.Run(() => WebRequesting(adres));
+            Async_RTB.Text += tresc.Substring(0, 100);
         }
 
-        public string ShortHtml(string Adres)
-        {
-            System.Threading.Thread.Sleep(10000);
-            // Create a request for the URL. 		
-            WebRequest request = WebRequest.Create(Adres);
-            // If required by the server, set the credentials.
-            request.Credentials = CredentialCache.DefaultCredentials;
-            // Get the response.
-            request.ContentLength = 100;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = reader.ReadToEnd();
-            // Cleanup the streams and the response.
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
-        }
+        
     }
 }

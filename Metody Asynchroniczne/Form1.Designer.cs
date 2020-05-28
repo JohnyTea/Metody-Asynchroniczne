@@ -34,16 +34,16 @@
             this.listaStron_ListBox = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.Sleep_CHeckB = new System.Windows.Forms.CheckBox();
+            this.URL_TB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(880, 72);
+            this.button1.Location = new System.Drawing.Point(880, 14);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Pobierz 1 strone";
+            this.button1.Text = "Pobierz";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -59,9 +59,9 @@
             // 
             // Async_RTB
             // 
-            this.Async_RTB.Location = new System.Drawing.Point(12, 12);
+            this.Async_RTB.Location = new System.Drawing.Point(12, 43);
             this.Async_RTB.Name = "Async_RTB";
-            this.Async_RTB.Size = new System.Drawing.Size(733, 433);
+            this.Async_RTB.Size = new System.Drawing.Size(733, 402);
             this.Async_RTB.TabIndex = 5;
             this.Async_RTB.Text = "";
             // 
@@ -75,11 +75,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(879, 13);
+            this.button2.Location = new System.Drawing.Point(12, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Pobieraj";
+            this.button2.Text = "Pobierz";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -93,22 +93,20 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Sleep_CHeckB
+            // URL_TB
             // 
-            this.Sleep_CHeckB.AutoSize = true;
-            this.Sleep_CHeckB.Location = new System.Drawing.Point(880, 101);
-            this.Sleep_CHeckB.Name = "Sleep_CHeckB";
-            this.Sleep_CHeckB.Size = new System.Drawing.Size(47, 17);
-            this.Sleep_CHeckB.TabIndex = 9;
-            this.Sleep_CHeckB.Text = "Śpię";
-            this.Sleep_CHeckB.UseVisualStyleBackColor = true;
+            this.URL_TB.Location = new System.Drawing.Point(93, 14);
+            this.URL_TB.Name = "URL_TB";
+            this.URL_TB.Size = new System.Drawing.Size(654, 20);
+            this.URL_TB.TabIndex = 10;
+            this.URL_TB.Text = "https://pl.wikipedia.org/wiki/Uk%C5%82ad_chor%C4%85giewkowy";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 485);
-            this.Controls.Add(this.Sleep_CHeckB);
+            this.Controls.Add(this.URL_TB);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listaStron_ListBox);
@@ -130,7 +128,7 @@
         private System.Windows.Forms.ListBox listaStron_ListBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox Sleep_CHeckB;
+        private System.Windows.Forms.TextBox URL_TB;
     }
 }
 
