@@ -63,10 +63,14 @@ namespace Metody_Asynchroniczne
         private async void button3_Click(object sender, EventArgs e)
         {
             string adres = (string)listaStron_ListBox.SelectedItem;
-            string tresc = await Task.Run(() => WebRequesting(adres));
+            string tresc = await ShortHTML(adres);
             Async_RTB.Text += tresc.Substring(0, 100);
         }
 
-        
+        private async Task<string> ShortHTML(string adres)
+        {
+            return "\"" + await Task.Run(() => WebRequesting(adres)) + "\"";
+            
+        }
     }
 }
